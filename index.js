@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 const mysql = require("mysql");
-
+const cors = require("cors")
+app.use(cors())
 app.post("/api/contacts", (req, res) => {
   let connection = mysql.createConnection({
     host: "db4free.net",
