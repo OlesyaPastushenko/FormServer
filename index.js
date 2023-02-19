@@ -1,18 +1,19 @@
 const express = require("express");
 const app = express();
+const config = require("config")
 app.use(express.json());
 const mysql = require("mysql");
-const cors = require("cors")
-app.use(cors())
-app.get("/api/contacts", (req,res) => {
-  res.send("Niice")
-})
+const cors = require("cors");
+app.use(cors());
+app.get("/api/contacts", (req, res) => {
+  res.send("Niice");
+});
 app.post("/api/contacts", (req, res) => {
   let connection = mysql.createConnection({
-    host: "db4free.net",
-    user: "olesya_pas",
-    password: "12061980",
-    database: "testtask",
+    host: config.get('host'),
+    user: config.get('user'),
+    password: config.get('password'),
+    database: config.get('database'),
   });
   connection.connect();
   const body = req.body;
